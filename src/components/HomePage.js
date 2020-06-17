@@ -8,15 +8,15 @@ class HomePage extends Component{
     state = {
         searchResults: [],
         zipCode: "",
+        resultsTitle: "",
         error: ""
     }
 
     handleChange = (event) => {
-        console.log('ev tar', event.target);
-
         const {value} = event.target
         console.log('value: ', value);
         this.setState({zipCode: value})
+        this.setState({resultsTitle: value})
     }
 
     handleSubmit = (event) => {
@@ -32,8 +32,7 @@ class HomePage extends Component{
             }
         }).then(result => {
             this.fetchEnergy(result.result[0].gisjoin)
-            //console.log('result: ', result.result[0].gisjoin);
-
+            this.setState({zipCode: ""})
         })
         .catch(error => this.setState({error: error.message}))
     }
@@ -50,12 +49,17 @@ class HomePage extends Component{
                 throw new Error("Fetch issue for 2nd call")
             }
         }).then(result => {
-            console.log('2nd result: ', result);
+            // console.log('2nd result: ', result.result.similar_places.table);
             
+            const resultObject = result.result.similar_places.table
+
+            let finalResults = Object.entries(resultObject).map((e) => ({[e[0]]: e[1]}))
+            
+            console.log('final res', finalResults);
+            
+            this.setState({searchResults: finalResults})
         })
         .catch(error => this.setState({error: error.message}))
-        
-        
     }
 
     render(){
@@ -76,7 +80,11 @@ class HomePage extends Component{
                     {this.state.error ? <p>{this.state.error}</p> : null}
 
                 </form>
-                < ZipCodeSearchResults />
+                < ZipCodeSearchResults 
+                    resultsTitle={this.state.resultsTitle} 
+                    searchResults={this.state.searchResults}
+                />
+                
             </div>
         )
     }
