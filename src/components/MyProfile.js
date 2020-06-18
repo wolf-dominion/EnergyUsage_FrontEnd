@@ -5,7 +5,7 @@ function MyProfile(props){
     return(
         <div>
             <h2>My profile</h2>
-            < Fm faves={props.faves}/>
+            < Fm removeFave={props.removeFave} faves={props.faves}/>
         </div>
     )
 }

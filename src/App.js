@@ -92,9 +92,21 @@ class App extends Component{
     this.setState({fm})
   }
 
-  // setLoggedIn = () => {
-  //   this.setState({loggedIn: true})
-  // }
+  removeFave = (fave) => {
+    console.log('removefave', fave);
+    
+    let favorites = this.state.fm.filter(favorite => favorite !== fave)
+
+    this.setState({fm: favorites})
+
+    fetch(`http://localhost:3000/favoritemaps/${fave.id}`, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+        'authorization': `Bearer ${localStorage.token}`
+      },
+    })
+  }
 
   isLoggedIn = () => {
     const fmURL = 'http://localhost:3000/favoritemaps'
@@ -102,11 +114,8 @@ class App extends Component{
       headers: {
         'authorization': `Bearer ${localStorage.token}`}
     })
-    .then(response => {
-      //console.log('status: ', response.status);
-      
+    .then(response => {      
       if (response.status === 200){
-        //this.changeLoggedinStatus()
         this.setState({loggedIn: true})
         return response.json()
       }
@@ -116,15 +125,9 @@ class App extends Component{
     
   }
 
-  // logout = () => {    
-  //   localStorage.clear()
-  //   this.setState({loggedIn: false})
-  //   //console.log('logout function activated: ', this.state.loggedIn);
-  // }
+
   render(){
-    //console.log('global object: ', process.env.REACT_APP_API_KEY);
     const {fm, loggedIn} = this.state
-    console.log('faves on app: ', this.state.fm);
     
     return (
       <Router>
@@ -134,7 +137,7 @@ class App extends Component{
           <HomePage saveOrRemoveFromFaves={this.saveOrRemoveFromFaves}/>
         </Route>
         <Route path='/myProfile'>
-          <MyProfile faves={this.state.fm}/>
+          <MyProfile removeFave={this.removeFave} faves={this.state.fm}/>
         </Route>
         <Route path='/Fm'>
           <Fm faves={this.state.fm}/>

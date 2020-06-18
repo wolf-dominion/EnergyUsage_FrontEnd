@@ -3,7 +3,7 @@ import Favorite from './Favorite'
 
 function Fm(props){
 
-    console.log('faves: ', props);
+    //console.log('faves: ', props);
     
 
     const generateCards = () => {
@@ -12,14 +12,13 @@ function Fm(props){
             return <Favorite 
                 key={sr.indexOf(fave)} 
                 fave={fave}
-                saveOrRemoveFromFaves={props.saveOrRemoveFromFaves}
+                removeFave={props.removeFave}
                 />
         })
     }
 
     return(
-        <div>
-            <h2>Favorite maps page</h2>
+        <div className="cards-container">
             {generateCards()}
         </div>
     )

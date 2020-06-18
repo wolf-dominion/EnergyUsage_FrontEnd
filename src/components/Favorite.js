@@ -2,8 +2,12 @@ import React from 'react'
 
 function Favorite(props) {
 
-    console.log('props on card: ', props);
+    //console.log('props on card: ', props);
     
+    function handleClick(e, fave) {
+        e.stopPropagation()
+        props.removeFave(fave)
+    }
 
     return(
         <div className='card'>
@@ -13,7 +17,7 @@ function Favorite(props) {
             <p>Max: {props.fave.max}</p>
             <p>Min: {props.fave.min}</p>
 
-            <button>Remove</button>
+            <button onClick={(e)=> handleClick(e, props.fave)} >Remove</button>
         </div>
     )
 }
