@@ -39,7 +39,7 @@ class HomePage extends Component{
 
     fetchEnergy = (gisjoin) => {
         console.log('gisjoin', gisjoin);
-        const joinURL = `https://developer.nrel.gov/api/cleap/v1/energy_cohort_data/${gisjoin}?api_key=DEMO_KEY`
+        const joinURL = `https://developer.nrel.gov/api/cleap/v1/energy_cohort_data/${gisjoin}?api_key=${key}`
         fetch(joinURL, {
             method: 'GET', 
         }).then(response => {

@@ -20,32 +20,51 @@ class App extends Component{
   }
 
   saveOrRemoveFromFaves = (zip, title, avg, min, max) => {
-    console.log('save function trigggered', zip);
+    //console.log('save function trigggered', zip);
+    let foundFave = undefined
+    foundFave = this.state.fm.map(favorite => {
+      //console.log('zip', zip);
+      //console.log('title', title.length);
+      //console.log('f.zip', favorite.zip);
+      //console.log('f.title', favorite.energyInfo.length);
+      if (parseInt(zip, 10) === favorite.zip && favorite.energyInfo.length === title.length){
+        return favorite
+      } else { return null}
+    })
 
-    const newFave = {
-      favoritemap: {
-        zip: zip,
-        avg: avg.toString(),
-        min: min.toString(),
-        max: max.toString(),
-        energyInfo: title
-      }
-    }
+    console.log('foundFave', foundFave);
 
-    fetch('http://localhost:3000/favoritemaps', {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-          'authorization': `Bearer ${localStorage.token}`
-        },
-        body: JSON.stringify(newFave.favoritemap)
-      })
-      .then(response => {
-        console.log('status: ', response.status)
-        if (response.status === 200){
-          this.getFaves()
+    if(foundFave[foundFave.length - 1] === null){
+      //console.log('inside of foundfave if');
+      
+      const newFave = {
+        favoritemap: {
+          zip: zip,
+          avg: avg.toString(),
+          min: min.toString(),
+          max: max.toString(),
+          energyInfo: title
         }
-      })
+      }
+    
+
+      fetch('http://localhost:3000/favoritemaps', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            'authorization': `Bearer ${localStorage.token}`
+          },
+          body: JSON.stringify(newFave.favoritemap)
+        })
+        .then(response => {
+          console.log('status: ', response.status)
+          if (response.status === 200){
+            this.getFaves()
+          }
+        })
+      }
+      
+      console.log('undefined?', foundFave);
   }
 
   getFaves = () => {

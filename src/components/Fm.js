@@ -3,7 +3,7 @@ import Favorite from './Favorite'
 
 function Fm(props){
 
-    //console.log('faves: ', props);
+    console.log('faves: ', props);
     
 
     const generateCards = () => {
@@ -13,6 +13,10 @@ function Fm(props){
                 key={sr.indexOf(fave)} 
                 fave={fave}
                 removeFave={props.removeFave}
+                chartA={props.chartA}
+                chartB={props.chartB}
+                setA={props.setA}
+                setB={props.setB}
                 />
         })
     }

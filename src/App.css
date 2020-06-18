@@ -90,3 +90,12 @@ h2 {
 .city {
     color: rgb(108, 143, 105);
 }
+
+.compare {
+    margin-left: 1rem;
+    background-color: rgb(152, 179, 122);
+}
+
+.chart-container {
+    background-color: antiquewhite;
+}
