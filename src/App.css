@@ -50,15 +50,43 @@ button:hover{
     cursor: pointer;
 }
 
-.cats-container{
+.cards-container{
     margin: 2rem  0;
     display: flex;
     flex-wrap: wrap;;
 }
 
-.cat-card{
+.card{
     /* border: solid 3px rgb(161, 168, 155); */
+    width: 300px;
+    height: 230px;
     padding: 1rem;
     margin: 0.5rem;
     box-shadow: 5px 5px 5px rgb(184, 184, 184);
+    transition: transform .2s;
+}
+
+.card:hover {
+    transform: scale(1.03);
+    background-color: rgb(245, 245, 245);
+}
+
+h2 {
+    font-size: 18px;
+}
+
+.commercial {
+    color: rgb(86, 152, 158);
+}
+
+.industrial {
+    color: rgb(109, 105, 143);
+}
+
+.residential {
+    color: rgb(143, 108, 105);
+}
+
+.city {
+    color: rgb(108, 143, 105);
 }

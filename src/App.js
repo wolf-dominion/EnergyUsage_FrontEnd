@@ -15,6 +15,61 @@ class App extends Component{
     loggedIn: false
   }
 
+  componentDidMount(){
+    this.getFaves()
+  }
+
+  saveOrRemoveFromFaves = (zip, title, avg, min, max) => {
+    console.log('save function trigggered', zip);
+
+    const newFave = {
+      favoritemap: {
+        zip: zip,
+        avg: avg.toString(),
+        min: min.toString(),
+        max: max.toString(),
+        energyInfo: title
+      }
+    }
+
+    fetch('http://localhost:3000/favoritemaps', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          'authorization': `Bearer ${localStorage.token}`
+        },
+        body: JSON.stringify(newFave.favoritemap)
+      })
+      .then(response => {
+        console.log('status: ', response.status)
+        if (response.status === 200){
+          this.getFaves()
+        }
+      })
+  }
+
+  getFaves = () => {
+    const favesURL = 'http://localhost:3000/favoritemaps'
+    fetch(favesURL, {
+      method: 'GET',
+      headers: {'content-type':'application/json',
+                'authorization': `Bearer ${localStorage.token}`}
+    })
+    .then(parseJSON)
+    .then(this.saveToState)
+    
+    function parseJSON(response){
+    return response.json()
+    }
+    
+  }
+
+  saveToState = (response) => {
+    console.log('all fave: ', response);
+    
+    this.setState({fm: response})
+  }
+
   changeLoggedinStatus = () => {
     if (this.state.loggedIn === true){
       this.setState({loggedIn: false})
@@ -69,19 +124,20 @@ class App extends Component{
   render(){
     //console.log('global object: ', process.env.REACT_APP_API_KEY);
     const {fm, loggedIn} = this.state
-
+    console.log('faves on app: ', this.state.fm);
+    
     return (
       <Router>
         <Header loggedIn={loggedIn} changeLoggedinStatus={this.changeLoggedinStatus}/>
         <h1>Your Energy</h1>
         <Route exact path='/'>
-          <HomePage/>
+          <HomePage saveOrRemoveFromFaves={this.saveOrRemoveFromFaves}/>
         </Route>
         <Route path='/myProfile'>
-          <MyProfile />
+          <MyProfile faves={this.state.fm}/>
         </Route>
         <Route path='/Fm'>
-          <Fm />
+          <Fm faves={this.state.fm}/>
         </Route>
         {/* <Route path='/Authenticate'>
           <Authenticate  loggedIn={loggedIn} changeLoggedinStatus={this.changeLoggedinStatus}/>

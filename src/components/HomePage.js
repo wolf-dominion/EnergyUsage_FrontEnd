@@ -83,6 +83,7 @@ class HomePage extends Component{
                 < ZipCodeSearchResults 
                     resultsTitle={this.state.resultsTitle} 
                     searchResults={this.state.searchResults}
+                    saveOrRemoveFromFaves={this.props.saveOrRemoveFromFaves}
                 />
                 
             </div>

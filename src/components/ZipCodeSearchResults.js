@@ -6,7 +6,12 @@ function ZipCodeSearchResults(props) {
     const generateCards = () => {
         let sr = props.searchResults
         return sr.map(eneryDataSet => {
-            return <ZipCard key={sr.indexOf(eneryDataSet)} energyInfo={eneryDataSet}/>
+            return <ZipCard 
+                key={sr.indexOf(eneryDataSet)} 
+                energyInfo={eneryDataSet}
+                resultsTitle={props.resultsTitle}
+                saveOrRemoveFromFaves={props.saveOrRemoveFromFaves}
+                />
         })
     }
 
