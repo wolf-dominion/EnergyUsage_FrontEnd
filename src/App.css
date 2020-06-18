@@ -99,3 +99,8 @@ h2 {
 .chart-container {
     background-color: antiquewhite;
 }
+
+.chart-div {
+    /* background-color: blue; */
+    max-height: 700px;
+}
