@@ -19,7 +19,9 @@ class MyProfile extends Component{
     render(){
         return(
             <div>
-                <h2>My profile</h2>
+                <div className='saved-data-title'>
+                    <h2 >My Saved Data</h2>
+                </div>
                 < Compare 
                     chartA={this.state.chartA} 
                     chartB={this.state.chartB} 

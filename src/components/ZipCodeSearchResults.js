@@ -20,7 +20,7 @@ function ZipCodeSearchResults(props) {
 
         return(
             <div>
-                <p>Results:</p>
+                <h2 className='center-results'>Results:</h2>
                 <div className="cards-container">
                     {generateCards()}
                 </div>

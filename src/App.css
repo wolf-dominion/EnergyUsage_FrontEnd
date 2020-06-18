@@ -29,6 +29,8 @@ form {
     display: flex;
     flex-direction: column;
     width: 30%;
+    margin: auto !important;
+    position: relative !important;
 }
 form > input {
     margin-top: 0.5rem;
@@ -37,31 +39,38 @@ form > input {
 }
 
 form > input[type=submit]{
-    background-color: rgb(202, 255, 159);
+    background-color: rgb(252, 253, 154);
 }
 
 form > input[type=submit]:hover{
-    background-color: rgb(161, 194, 132);
+    background-color: rgb(236, 238, 145);
     cursor: pointer;
 }
 
 button {
     padding: 0.2rem !important;
     margin: 0.5rem 0 !important;
-    background-color: rgb(255, 244, 147) !important;
-    width: 55px  !important;
+    background-color: rgb(189, 221, 171) !important;
+    /* width: 55px  !important; */
+    max-width: 85px !important;
+    min-width: 55px !important;
+    align-items: unset !important;
+    
 
 }
 
 button:hover{
-    background-color: rgb(177, 133, 68) !important;
+    background-color: rgb(193, 253, 156) !important;
     cursor: pointer !important;
 }
 
 .cards-container{
-    margin: 2rem  0 !important;
+    /* margin: 2rem  0 !important; */
     display: flex !important;
     flex-wrap: wrap !important;
+    max-width: 1150px;
+    margin: auto !important;
+    position: relative !important;
 }
 
 .card{
@@ -72,6 +81,7 @@ button:hover{
     margin: 0.5rem !important;
     box-shadow: 5px 5px 5px rgb(184, 184, 184) !important;
     transition: transform .2s !important;
+
 }
 
 .card:hover {
@@ -82,10 +92,14 @@ button:hover{
 h2 {
     font-size: 18px !important;
     font-weight: bold  !important;
+    margin: auto !important;
+    position: relative !important;
 }
 
 .commercial {
     color: rgb(86, 152, 158);
+    padding-top: 5px;
+    padding-bottom: 8px;
 }
 
 .industrial {
@@ -101,15 +115,39 @@ h2 {
 }
 
 .compare {
-    margin-left: 1rem;
-    background-color: rgb(152, 179, 122);
+    margin-left: 1rem !important;
+    background-color: rgb(255, 184, 172) !important;
 }
 
 .chart-container {
-    background-color: antiquewhite;
+    background-color: rgb(245, 245, 245);
+    max-width: 1000px !important;
+    margin: auto !important;
+    position: relative !important;
 }
 
 .chart-div {
     /* background-color: blue; */
-    max-height: 700px;
+    max-height: 650px !important;
+    max-width: 1000px !important;
+}
+
+.saved-data-title {
+    margin: auto !important;
+    position: relative !important;
+    padding-left: 50%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.center-it {
+    /* margin: auto !important; */
+    position: relative !important;
+    padding-left: 33%;
+}
+
+.center-results {
+    padding-top: 2rem;
+    position: relative !important;
+    padding-left: 47%;
 }

@@ -44,9 +44,10 @@ function Favorite(props) {
             <p>Avg: {props.fave.avg}</p>
             <p>Max: {props.fave.max}</p>
             <p>Min: {props.fave.min}</p>
-
-            <button onClick={(e)=> handleClick(e, props.fave)} >Remove</button>
-            <button className="compare" onClick={(e)=> compareButtonClicked(e, props.fave)} >Compare</button>
+            <div className="buttons">
+                <button className='side' onClick={(e)=> handleClick(e, props.fave)} >Remove</button>
+                <button className="compare" onClick={(e)=> compareButtonClicked(e, props.fave)} >Compare</button>
+            </div>
         </div>
     )
 }
