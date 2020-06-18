@@ -17,25 +17,19 @@ class App extends Component{
 
   componentDidMount(){
     this.getFaves()
+    this.isLoggedIn()
   }
 
   saveOrRemoveFromFaves = (zip, title, avg, min, max) => {
-    //console.log('save function trigggered', zip);
+
     let foundFave = undefined
-    foundFave = this.state.fm.map(favorite => {
-      //console.log('zip', zip);
-      //console.log('title', title.length);
-      //console.log('f.zip', favorite.zip);
-      //console.log('f.title', favorite.energyInfo.length);
-      if (parseInt(zip, 10) === favorite.zip && favorite.energyInfo.length === title.length){
-        return favorite
-      } else { return null}
+    foundFave = this.state.fm.filter(favorite => {
+      return +zip === favorite.zip && favorite.energyInfo.length === title.length
     })
 
     console.log('foundFave', foundFave);
 
-    if(foundFave[foundFave.length - 1] === null){
-      //console.log('inside of foundfave if');
+    if(!foundFave.length){
       
       const newFave = {
         favoritemap: {
@@ -68,6 +62,7 @@ class App extends Component{
   }
 
   getFaves = () => {
+    
     const favesURL = 'http://localhost:3000/favoritemaps'
     fetch(favesURL, {
       method: 'GET',
@@ -76,6 +71,9 @@ class App extends Component{
     })
     .then(parseJSON)
     .then(this.saveToState)
+    .catch(error => {
+      console.error(error)
+    })
     
     function parseJSON(response){
     return response.json()
@@ -103,9 +101,9 @@ class App extends Component{
     localStorage.clear()
   }
 
-  componentDidMount() {
-    this.isLoggedIn()
-  }
+  // componentDidMount() {
+  //   this.isLoggedIn()
+  // }
 
   setfm = (fm) => {
     this.setState({fm})
@@ -146,12 +144,13 @@ class App extends Component{
 
 
   render(){
-    const {fm, loggedIn} = this.state
+    const {loggedIn} = this.state
     
     return (
+      < div className="site">
       <Router>
         <Header loggedIn={loggedIn} changeLoggedinStatus={this.changeLoggedinStatus}/>
-        <h1>Your Energy</h1>
+
         <Route exact path='/'>
           <HomePage saveOrRemoveFromFaves={this.saveOrRemoveFromFaves}/>
         </Route>
@@ -180,7 +179,8 @@ class App extends Component{
           }}
         />
       </Router>
-
+          </div>
+          
     )
   }
 }

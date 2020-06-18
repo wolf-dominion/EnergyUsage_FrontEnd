@@ -1,9 +1,6 @@
 import React from 'react'
-import Compare from './Compare'
 
 function Favorite(props) {
-
-    //console.log('props on card: ', props);
     
     function handleClick(e, fave) {
         e.stopPropagation()
@@ -21,10 +18,29 @@ function Favorite(props) {
         }
     }
 
+    const styleByType = () => {
+        
+        if (props.fave.energyInfo[0] === 'c'){
+            if (props.fave.energyInfo[1] === 'o'){
+                return 'commercial'
+            }
+            if (props.fave.energyInfo[1] === 'i'){
+                return 'city'
+            }
+        }
+        if (props.fave.energyInfo[0] === 'i'){
+            return 'industrial'
+        }
+        if (props.fave.energyInfo[0] === 'r'){
+            return 'residential'
+        }
+    }
+    const styleColor = styleByType()
+    
     return(
         <div className='card'>
             <h2>Zip: {props.fave.zip}</h2>
-            <h2>{props.fave.energyInfo}</h2>
+            <h2 className={styleColor}>{props.fave.energyInfo}</h2>
             <p>Avg: {props.fave.avg}</p>
             <p>Max: {props.fave.max}</p>
             <p>Min: {props.fave.min}</p>

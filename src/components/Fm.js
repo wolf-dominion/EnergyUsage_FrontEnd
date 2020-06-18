@@ -3,7 +3,7 @@ import Favorite from './Favorite'
 
 function Fm(props){
 
-    console.log('faves: ', props);
+    //console.log('faves: ', props);
     
 
     const generateCards = () => {

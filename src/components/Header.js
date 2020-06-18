@@ -1,22 +1,33 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { Nav, Navbar } from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Header({loggedIn, changeLoggedinStatus}) {
 
     //console.log('loggedIn from Header: ', loggedIn);
     
     return(
-        <nav>
-        <Link to='/'>Home</Link>
-        <Link to='/myProfile' >My Profile</Link>
+        <div className="App container">
+            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+                <Navbar.Brand href="/">Energy CompAIR</Navbar.Brand>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav className="mr-auto">
 
-        <Link 
-            onClick={loggedIn ? changeLoggedinStatus : null} 
-            to='/Authenticate'
-            >
-            {loggedIn ? "Logout" : "Login"}
-        </Link>
-    </nav>
+                    </Nav>
+                    <Nav>
+                    <Nav.Link href="/">Home</Nav.Link>
+                    <Nav.Link href="myProfile">My Profile</Nav.Link>
+                    <Nav.Link 
+                        onClick={loggedIn ? changeLoggedinStatus : null} 
+                        href='/Authenticate'
+                        >
+                        {loggedIn ? "Logout" : "Login"}
+                    </Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+                </Navbar>
+      </div>
     )
 
 }

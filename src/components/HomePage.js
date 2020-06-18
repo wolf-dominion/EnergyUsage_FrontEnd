@@ -65,8 +65,7 @@ class HomePage extends Component{
     render(){
         const {zipCode} = this.state
         return(
-            <div>
-                <h2>Home page</h2>
+            <div className="content-container">
                 <p>Enter a zipcode to see that area's energy usage.</p>
                 <form className="zip-one" onSubmit={this.handleSubmit}>
                     <label>Zip:</label>

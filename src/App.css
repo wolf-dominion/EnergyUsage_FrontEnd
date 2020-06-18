@@ -1,7 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 * {
-    font-family: Montserrat, sans-serif;
+    font-family: Montserrat, sans-serif ;
+    
+}
+
+.content-container {
+    padding-top: 2rem;
+    padding-left: 2rem;
 }
 
 header {
@@ -40,39 +46,42 @@ form > input[type=submit]:hover{
 }
 
 button {
-    padding: 0.2rem;
-    margin: 0.5rem 0;
-    background-color: rgb(255, 244, 147);
+    padding: 0.2rem !important;
+    margin: 0.5rem 0 !important;
+    background-color: rgb(255, 244, 147) !important;
+    width: 55px  !important;
+
 }
 
 button:hover{
-    background-color: rgb(177, 133, 68);
-    cursor: pointer;
+    background-color: rgb(177, 133, 68) !important;
+    cursor: pointer !important;
 }
 
 .cards-container{
-    margin: 2rem  0;
-    display: flex;
-    flex-wrap: wrap;;
+    margin: 2rem  0 !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
 }
 
 .card{
     /* border: solid 3px rgb(161, 168, 155); */
-    width: 300px;
-    height: 230px;
-    padding: 1rem;
-    margin: 0.5rem;
-    box-shadow: 5px 5px 5px rgb(184, 184, 184);
-    transition: transform .2s;
+    width: 340px !important;
+    height: 250px !important;
+    padding: 1rem !important;
+    margin: 0.5rem !important;
+    box-shadow: 5px 5px 5px rgb(184, 184, 184) !important;
+    transition: transform .2s !important;
 }
 
 .card:hover {
-    transform: scale(1.03);
-    background-color: rgb(245, 245, 245);
+    transform: scale(1.03) !important;
+    background-color: rgb(245, 245, 245) !important;
 }
 
 h2 {
-    font-size: 18px;
+    font-size: 18px !important;
+    font-weight: bold  !important;
 }
 
 .commercial {
