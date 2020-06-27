@@ -28,7 +28,11 @@ class App extends Component{
   }
 
   saveOrRemoveFromFaves = (zip, title, avg, min, max) => {
-    let foundFave = this.state.fm.find(favorite => +zip === favorite.zip && favorite.energyInfo.length === title.length)
+    const existingState = this.state.fm
+    console.log('existing state: ', existingState);
+    
+    let foundFave
+    foundFave = existingState.find(favorite => +zip === favorite.zip && favorite.energyInfo.length === title.length)
 
     
 
@@ -96,6 +100,9 @@ class App extends Component{
     }
     if (this.state.loggedIn === false){
       this.setState({loggedIn: true})
+      this.getFaves()
+      console.log('get faves should be called');
+      
     }
   }
 
@@ -135,7 +142,9 @@ class App extends Component{
         return response.json()
       }
     }).then(fm => {
-      this.setfm(fm)
+      console.log('fm', fm);
+      
+      // this.getFaves()
     })
     
   }
