@@ -35,6 +35,7 @@ class Signup extends Component {
         .then(result => {
             if ('token' in result){
                 localStorage.setItem("token", result.token)
+                alert("Sign up successful!")
                 this.props.changeLoggedinStatus()
             }
             console.log('result: ', result.message.username);

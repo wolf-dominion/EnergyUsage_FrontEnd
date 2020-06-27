@@ -28,15 +28,11 @@ class App extends Component{
   }
 
   saveOrRemoveFromFaves = (zip, title, avg, min, max) => {
+    let foundFave = this.state.fm.find(favorite => +zip === favorite.zip && favorite.energyInfo.length === title.length)
 
-    let foundFave = undefined
-    foundFave = this.state.fm.filter(favorite => {
-      return +zip === favorite.zip && favorite.energyInfo.length === title.length
-    })
+    
 
-    console.log('foundFave', foundFave);
-
-    if(!foundFave.length){
+    if(!foundFave){
       
       const newFave = {
         favoritemap: {
@@ -65,8 +61,6 @@ class App extends Component{
           }
         })
       }
-      
-      console.log('undefined?', foundFave);
   }
 
   getFaves = () => {
@@ -108,10 +102,6 @@ class App extends Component{
   clearStorage = () => {
     localStorage.clear()
   }
-
-  // componentDidMount() {
-  //   this.isLoggedIn()
-  // }
 
   setfm = (fm) => {
     this.setState({fm})
@@ -172,9 +162,6 @@ class App extends Component{
         <Route path='/Fm'>
           <Fm faves={this.state.fm}/>
         </Route>
-        {/* <Route path='/Authenticate'>
-          <Authenticate  loggedIn={loggedIn} changeLoggedinStatus={this.changeLoggedinStatus}/>
-        </Route> */}
         <Route  path="/Authenticate"
           render={(routerProps)=> {
             return (

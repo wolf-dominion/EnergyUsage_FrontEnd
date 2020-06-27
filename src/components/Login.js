@@ -15,13 +15,19 @@ class Login extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
+
+        const user = {
+            username: this.state.username,
+            password: this.state.password
+        }
+
         const usersURL = 'http://localhost:3000/login'
         fetch(usersURL, {
             method: 'POST', 
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(this.state)
+            body: JSON.stringify(user)
         }).then(response => {
             if(response.status === 200) {
                 return response.json()
@@ -30,8 +36,9 @@ class Login extends Component {
             }
         })
         .then(result => {
+            console.log('result',result)
             localStorage.setItem("token", result.token)
-            
+            alert("You are now logged in!")
             this.props.changeLoggedinStatus()
 
         })
