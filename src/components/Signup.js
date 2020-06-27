@@ -25,7 +25,8 @@ class Signup extends Component {
             },
             body: JSON.stringify({user: this.state})
         }).then(response => {
-            if(response.message.username) {
+            if(response.message) {
+                console.log(response.message)
                 throw new Error("Username already taken")
             } else {
                 return response.json()

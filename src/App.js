@@ -10,14 +10,21 @@ import Fm from './components/Fm'
 //const key = process.env.REACT_APP_API_KEY
 
 class App extends Component{
+  _isMounted = false
+
   state = {
     fm: [],
     loggedIn: false
   }
 
   componentDidMount(){
-    this.getFaves()
-    this.isLoggedIn()
+    this._isMounted = true
+    
+    if (this._isMounted){
+      this.getFaves()
+      this.isLoggedIn()
+    }
+
   }
 
   saveOrRemoveFromFaves = (zip, title, avg, min, max) => {
@@ -53,6 +60,7 @@ class App extends Component{
         .then(response => {
           console.log('status: ', response.status)
           if (response.status === 200){
+            alert("Saved to your profile!")
             this.getFaves()
           }
         })
@@ -140,6 +148,10 @@ class App extends Component{
       this.setfm(fm)
     })
     
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
 
