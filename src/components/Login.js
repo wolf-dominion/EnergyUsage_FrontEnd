@@ -62,7 +62,7 @@ class Login extends Component {
             </input>
             <br />
             <input 
-                tpye="password"
+                type="password"
                 name="password"
                 value={password}
                 placeholder="password"
